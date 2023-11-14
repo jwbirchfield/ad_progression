@@ -1,0 +1,64 @@
+description,group,mean,sd,q05,q95
+age(c) coef FSLong,CN,-0.018,0.008,-0.032,-0.006
+age(c) coef FSLong,MCI,-0.041,0.007,-0.053,-0.029
+age(c) coef FSLong,AD,-0.049,0.01,-0.066,-0.033
+male coef FSLong,CN,0.062,0.078,-0.068,0.19
+male coef FSLong,MCI,0.193,0.107,0.017,0.37
+male coef FSLong,AD,0.136,0.145,-0.1,0.376
+age(c) coef MMSE_loss,CN,0.024,0.011,0.006,0.043
+age(c) coef MMSE_loss,MCI,0.038,0.016,0.013,0.065
+age(c) coef MMSE_loss,AD,0.01,0.029,-0.037,0.058
+male coef MMSE_loss,CN,0.201,0.108,0.024,0.379
+male coef MMSE_loss,MCI,-0.465,0.236,-0.86,-0.086
+male coef MMSE_loss,AD,0.643,0.411,-0.026,1.329
+random intercept mean FSLong,CN,6.701,0.057,6.609,6.794
+random intercept mean FSLong,MCI,5.88,0.085,5.741,6.021
+random intercept mean FSLong,AD,5.307,0.103,5.136,5.475
+random slope mean FSLong,CN,-0.063,0.009,-0.078,-0.048
+random slope mean FSLong,MCI,-0.175,0.009,-0.19,-0.16
+random slope mean FSLong,AD,-0.252,0.016,-0.277,-0.225
+random intercept mean MMSE_loss,CN,0.74,0.087,0.596,0.883
+random intercept mean MMSE_loss,MCI,3.366,0.192,3.05,3.69
+random intercept mean MMSE_loss,AD,6.222,0.29,5.741,6.695
+random slope mean MMSE_loss,CN,0.066,0.039,0.001,0.129
+random slope mean MMSE_loss,MCI,0.991,0.106,0.815,1.167
+random slope mean MMSE_loss,AD,2.548,0.271,2.1,2.984
+random intercept sd FSLong,CN,0.536,0.029,0.49,0.585
+random intercept sd FSLong,MCI,0.923,0.037,0.866,0.985
+random intercept sd FSLong,AD,0.874,0.054,0.79,0.968
+random slope sd FSLong,CN,0.084,0.009,0.069,0.1
+random slope sd FSLong,MCI,0.117,0.009,0.102,0.133
+random slope sd FSLong,AD,0.087,0.028,0.036,0.128
+random intercept sd MMSE_loss,CN,0.5,0.077,0.375,0.628
+random intercept sd MMSE_loss,MCI,1.559,0.115,1.374,1.755
+random intercept sd MMSE_loss,AD,1.842,0.213,1.493,2.193
+random slope sd MMSE_loss,CN,0.18,0.063,0.074,0.281
+random slope sd MMSE_loss,MCI,1.425,0.103,1.262,1.599
+random slope sd MMSE_loss,AD,2.599,0.26,2.191,3.048
+error/residual sd FSLong,CN,0.154,0.006,0.145,0.164
+error/residual sd FSLong,MCI,0.163,0.004,0.156,0.171
+error/residual sd FSLong,AD,0.173,0.01,0.157,0.19
+error/residual sd MMSE_loss,CN,0.958,0.032,0.905,1.012
+error/residual sd MMSE_loss,MCI,1.65,0.045,1.578,1.727
+error/residual sd MMSE_loss,AD,1.901,0.104,1.736,2.076
+"random effects correlation 1,2",CN,0.285,0.11,0.103,0.467
+"random effects correlation 1,2",MCI,0.275,0.078,0.145,0.401
+"random effects correlation 1,2",AD,0.173,0.219,-0.167,0.55
+"random effects correlation 1,3",CN,0.181,0.127,-0.027,0.389
+"random effects correlation 1,3",MCI,-0.286,0.07,-0.398,-0.169
+"random effects correlation 1,3",AD,-0.474,0.096,-0.626,-0.309
+"random effects correlation 1,4",CN,-0.01,0.213,-0.362,0.329
+"random effects correlation 1,4",MCI,-0.278,0.07,-0.391,-0.162
+"random effects correlation 1,4",AD,-0.189,0.11,-0.366,-0.003
+"random effects correlation 2,3",CN,0.018,0.194,-0.304,0.335
+"random effects correlation 2,3",MCI,-0.42,0.101,-0.584,-0.25
+"random effects correlation 2,3",AD,-0.203,0.256,-0.639,0.208
+"random effects correlation 2,4",CN,-0.417,0.256,-0.796,0.035
+"random effects correlation 2,4",MCI,-0.785,0.07,-0.892,-0.662
+"random effects correlation 2,4",AD,-0.333,0.221,-0.688,0.031
+"random effects correlation 3,4",CN,0.246,0.321,-0.277,0.773
+"random effects correlation 3,4",MCI,0.578,0.12,0.383,0.776
+"random effects correlation 3,4",AD,0.562,0.149,0.313,0.806
+"error/residual correlation 1,2",CN,0.036,0.051,-0.048,0.119
+"error/residual correlation 1,2",MCI,0.018,0.038,-0.045,0.08
+"error/residual correlation 1,2",AD,-0.017,0.075,-0.139,0.106

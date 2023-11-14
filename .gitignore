@@ -1,4 +1,11 @@
-.Rproj.user
-.Rhistory
-.RData
-.Ruserdata
+*.Rproj
+*.Rproj.user
+*.Rhistory
+*.RData
+*.Ruserdata
+*.rds
+*.RDS
+*/cv_fit/*
+model_*/fit/model_*-*-*.csv
+*/marginal_log_lik*/*
+*run_info*
