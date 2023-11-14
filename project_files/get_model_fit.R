@@ -37,7 +37,7 @@ get_model_fit <- function(model_name,
     chains = n_chains, 
     iter_warmup = warmup,
     iter_sampling = sampling,
-    refresh = (warmup+sampling)/100, 
+    refresh = 1, 
     thin = thin,
     max_treedepth = 20,
     adapt_delta = .95)
@@ -52,7 +52,8 @@ get_model_fit <- function(model_name,
     basename=model_name,
     timestamp=T,
     random=F)
-  chains <- list.files(path = '/fit') %>% 
+  setwd('fit')
+  chains <- list.files() %>% 
     str_subset('.csv') %>% 
     str_subset('summary', negate=TRUE)
   model_fit <- read_stan_csv(chains) %>%
@@ -65,7 +66,7 @@ get_model_fit <- function(model_name,
       thin = thin,
       start_time = start_time, 
       end_time = end_time)
-  
-  saveRDS(model_fit, glue('fit/{model_name}_fit.rds'))
+  saveRDS(model_fit, glue('{model_name}_fit.rds'))
+  setwd('..')
 
 }

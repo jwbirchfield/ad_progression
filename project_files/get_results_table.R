@@ -3,7 +3,10 @@
 
 get_results_table <- function(model_name){
   
-  model_summary <- readRDS(glue('fit/{model_name}_summary.csv'))
+  model_fit <- readRDS(glue('fit/{model_name}_fit.RDS'))
+  yvars <- attributes(model_fit)$yvars
+  
+  model_summary <- read_csv(glue('fit/{model_name}_summary.csv'))
   
   results_table <- model_summary %>%
     filter( 
@@ -74,6 +77,6 @@ get_results_table <- function(model_name){
     filter(!is.na(description)) %>%
     select(description, group, mean, sd, q05, q95) %>%
     distinct()
-  write_csv(x=results_table, file=glue('{model_name}_results_table.csv'))
+  write_csv(x=results_table, file=glue('fit/{model_name}_results_table.csv'))
   
 }

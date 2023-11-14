@@ -4,7 +4,7 @@
 get_run_report <- function(model_name){
   
   model_fit <- readRDS(glue('fit/{model_name}_fit.RDS'))
-  model_summary <- readRDS(glue('fit/{model_name}_summary.csv'))
+  model_summary <- read_csv(glue('fit/{model_name}_summary.csv'))
   
   model_name <- attributes(model_fit)$model_name
   n_chains <- attributes(model_fit)$n_chains
@@ -23,7 +23,7 @@ get_run_report <- function(model_name){
   log_lik_1 <- extract_log_lik(model_fit, merge_chains=FALSE)
   r_eff <- relative_eff(exp(log_lik_1), cores=8)
   loo_1 <- loo(log_lik_1, r_eff=r_eff, cores=8, save_psis=TRUE)
-  sink(file=glue('/fit/{model_name}_run_info.txt'))
+  sink(file=glue('fit/{model_name}_run_info.txt'))
   cat('Model name:', model_name, 
       '\n\nChains:', n_chains, 
       '\nWarmup iterations per chain:', warmup, 

@@ -156,9 +156,9 @@ get_mmse_lepd_3 <- function(model_name, y1, y2, y3, transformed_MMSE = FALSE){
   
   # transformation function
   if(transformed_MMSE){
-    J <- function(z){ .236 * (1 - pnorm(z)) / dnorm(z) }
+    Ja <- function(z){ .236 * (1 - pnorm(z)) / dnorm(z) }
   } else {
-    J <- function(z){ 1 }
+    Ja <- function(z){ 1 }
   }
   
   for(k in 1:5){
