@@ -1,0 +1,112 @@
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{longtable}
+\usepackage{parskip}
+\usepackage{interval}
+\usepackage{xcolor}
+\usepackage{courier}
+\intervalconfig {soft open fences}
+\setlength{\parindent}{0pt}
+
+\title{AD Progression}
+\author{Jesse W.~Birchfield}
+	
+\begin{document}
+
+\maketitle
+
+\pagebreak
+\section{Introduction and rationale}
+
+The previous chapter was motivated by potential benefits of early AD detection.
+ 
+This chapter is more purely descriptive: finding the trajectory and correlation over time of the neural vs. cognitive effects of AD, in relation to important covariates of age, sex, diagnosis. 
+
+These constitute a case study for a mildly novel combination of techniques in Bayesian longitudinal modeling. 
+
+\section{Data description}
+
+For description of ADNI data, entorhinal cortex, MRI, FreeSurfer and ANTs image processing, and MMSE score, see previous chapter. 
+
+In this work, we choose just two candidate pipelines, FSLong and ANTsSST. [Why these two?]
+
+\section{Research questions}
+
+AD symptoms include physical deterioration and functional cognitive decline. The former is objective and quantifiable, though hard to measure: the challenges of imaging. The latter is subjective and hard to quantify: the challenges of psychometrics. The ADNI researchers chose the MMSE instrument to gauge cognitive decline. We investigate the correlation of these two very different variables, conditional on covariates, and over time. 
+
+Covariates: age, gender. 
+
+Time effects: slope (coefficient of $t$) for each outcome is rate of decline.  
+
+Diagnoses: CN, MCI, AD.
+
+Random effects: we model random intercept and slope and correlations between them. Random intercept sd tells us variation at baseline not explained by covariates. Random slope sd tells us [something]. Correlation between RI and RS may be of interest. 
+
+We will investigate pooled results, and those broken down by age, gender, diagnosis, or some combination of factors. 
+
+More challenging is to make inferences about relationship of outcomes: MMSE conditional on ECT, or vice versa. 
+
+Before this, however, we need to find the best model for inference.
+
+\section{Multivariate normal model}
+
+Problems with using one response as a time-varying covariate (Weiss 2005): We cannot use observations with one response or the other but not both: reduced sample size, dropping not at random can cause bias. Which response should be treated as the response and which should be treated as the covariate? Results may be different. Whichever response is being used as a predictor may be affected by the other covariates in the analysis. 
+
+For a multivariate outcome, multivariate normal model has many advantages. With the normal / negative-binomial model, for example, we can’t model error correlation, so “information sharing” across outcomes is weak. 
+
+\section{Variable transformation} 
+
+ERC is continuous, roughly normal both marginally and conditional on covariates. MMSE is discrete, highly skewed, with a strong mode at one endpoint ... very far from normal. 
+
+Strategy: treat MMSE as a discrete or “coarse” measurement of a “latent variable” that is a continuous quantity. Find the monotonic (invertible) transformation of MMSE that gives it the closest possible approximation to a normal distribution. 
+
+[Mathematical discussion on finding the transformation.]
+
+\section{Model design}
+
+\subsection{Notation}
+
+\subsection{Specification}
+
+\subsection{Rationale, justification}
+
+Features and advantages of hierarchical random effects model. Why did we make the modeling choices we did? Why are our priors reasonable?
+
+\section{Computation}
+
+Getting this model to converge in Stan is challenging. Maybe include an appendix for how I achieve this.
+
+\section{Model comparison}
+
+\subsection{Method}
+
+We have four models with untransformed MMSE, four with transformed MMSE. 
+
+How do we compare these 8 models on a commensurable scale? Cross-validation is the gold standard for model comparison. We use 5-fold Bayesian CV on the LEPD (log expected predictive density, to be defined). Since some models are bivariate and some are trivariate, we find the CV LEPD of MMSE conditional on the other outcome(s). Since some models use untransformed MMSE and some use transformed MMSE, we apply the Jacobian correction. Putting these techniques together is complicated; this may be the first time this particular combination of techniques has been used. 
+[Section on methodological details]
+
+We also integrate out the random effects beta and do it again. [Why?] 
+
+\subsection{Results}
+
+The best model by conditional LEPD is the one with outcomes (ANTsSST, transformed MMSE). [Maybe run longer CV chains to make sure.]
+
+The best model by marginal conditional LEPD is the one with outcomes (FSLong, transformed MMSE). 
+
+Effect of transformation: Comparing models with transformation to the corresponding models without, we see LEPD increase by about 700. Since there are 2449 observations in the data, and exp(700/2449)=1.33, the transformed model has a typical likelihood 1.33 times higher per observation. (How else to interpret this? Likelihood ratio? Bayes factor?)
+
+\section{Analysis}
+
+Make inferences from the best model.
+
+\section{Discussion}
+
+What is noteworthy, from clinical side or statistical side? Where do we go next?
+
+\end{document}

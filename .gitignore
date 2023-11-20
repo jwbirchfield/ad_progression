@@ -9,3 +9,4 @@
 model_*/fit/model_*-*-*.csv
 */marginal_log_lik*/*
 *run_info*
+.Rproj.user
