@@ -1,10 +1,18 @@
+A multivariate Bayesian longitudinal model for ERC thickness and
+cognitive capacity
+================
+Jesse Birchfield
+2023-11-20
+
 Example equation:
-$$f(x) = \frac{1}{\sqrt{2\pi}} e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})}$$
+$$f(x) = \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})}$$
 
 Example code:
 
-    d <- dnorm(0, 0, 1) %>% round(3)
-    d
+``` r
+d <- dnorm(0, 0, 1) %>% round(3)
+d
+```
 
     ## [1] 0.399
 
@@ -14,7 +22,9 @@ we used the function `dnorm()`.
 We can run inline code by enclosing it in backticks starting with `r`:
 the value of `d` is 0.399.
 
-The value of `exp(1)` is 2.7182818.
+The value of `dnorm(0, 0, 1)` is 0.3989423.
+
+> Here is a block quote.
 
 Here is a horizontal line:
 
