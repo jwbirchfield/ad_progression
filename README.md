@@ -285,17 +285,17 @@ If you want more control, however, use a code chunk with
 knitr::include_graphics('tux.png')
 ```
 
-The above doesn’t work for Github. You have to edit the .md file
+The above doesn’t work for Github. After conversion, you have to edit the .md file
 directly and change the code to:
 
 ``` r
 <p align="center">
-  <img width="25" height="25" src="tux.png">
+  <img width="250" height="250" src="tux.png">
 </p>
 ```
 
 <p align="center">
-  <img width="25" height="25" src="tux.png">
+  <img width="250" height="250" src="tux.png">
 </p>
 
 ------------------------------------------------------------------------
