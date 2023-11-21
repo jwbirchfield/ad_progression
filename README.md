@@ -294,6 +294,10 @@ directly and change the code to:
 </p>
 ```
 
+<p align="center">
+  <img width="25" height="25" src="tux.png">
+</p>
+
 ------------------------------------------------------------------------
 
 Happy downmarking!
