@@ -187,6 +187,13 @@ If you don’t like the `[1]` in front of the output, try the `cat()` or
 
 Basic tibble print leaves much to be desired:
 
+``` r
+library(tidyverse)
+A <- head(mtcars)
+B <- tibble(A)
+B
+```
+
     # A tibble: 6 × 11
         mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
       <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
@@ -216,16 +223,17 @@ table in Github:
 ``` r
 library(simplermarkdown)
 md_table(A)
+# Generate the table with md_table(), then copy and paste into text.
 ```
 
-    ## |mpg |cyl|disp|hp |drat|wt   |qsec |vs|am|gear|carb|
-    ## |----|---|----|---|----|-----|-----|--|--|----|----|
-    ## |21.0|6  |160 |110|3.90|2.620|16.46|0 |1 |4   |4   |
-    ## |21.0|6  |160 |110|3.90|2.875|17.02|0 |1 |4   |4   |
-    ## |22.8|4  |108 | 93|3.85|2.320|18.61|1 |1 |4   |1   |
-    ## |21.4|6  |258 |110|3.08|3.215|19.44|1 |0 |3   |1   |
-    ## |18.7|8  |360 |175|3.15|3.440|17.02|0 |0 |3   |2   |
-    ## |18.1|6  |225 |105|2.76|3.460|20.22|1 |0 |3   |1   |
+| mpg  | cyl | disp | hp  | drat | wt    | qsec  | vs  | am  | gear | carb |
+|------|-----|------|-----|------|-------|-------|-----|-----|------|------|
+| 21.0 | 6   | 160  | 110 | 3.90 | 2.620 | 16.46 | 0   | 1   | 4    | 4    |
+| 21.0 | 6   | 160  | 110 | 3.90 | 2.875 | 17.02 | 0   | 1   | 4    | 4    |
+| 22.8 | 4   | 108  | 93  | 3.85 | 2.320 | 18.61 | 1   | 1   | 4    | 1    |
+| 21.4 | 6   | 258  | 110 | 3.08 | 3.215 | 19.44 | 1   | 0   | 3    | 1    |
+| 18.7 | 8   | 360  | 175 | 3.15 | 3.440 | 17.02 | 0   | 0   | 3    | 2    |
+| 18.1 | 6   | 225  | 105 | 2.76 | 3.460 | 20.22 | 1   | 0   | 3    | 1    |
 
 ------------------------------------------------------------------------
 
@@ -243,9 +251,23 @@ chunk options:
 
 A fairly basic ggplot:
 
+``` r
+# Note, geom_smooth() generates a message, so we set message=FALSE.
+g <- ggplot(mtcars, aes(x=wt, y=mpg)) + 
+  theme_bw() +
+  labs(title='MPG by weight for some cars', x='weight', y='MPG') +
+  geom_point() + 
+  geom_smooth()
+g
+```
+
 ![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 
 A smaller figure (50% linewidth), centered:
+
+``` r
+g
+```
 
 <img src="README_files/figure-gfm/unnamed-chunk-10-1.png" width="50%" style="display: block; margin: auto;" />
 
@@ -259,14 +281,18 @@ method is this: `![penguin](tux.png){width=25% height=25%}`.
 If you want more control, however, use a code chunk with
 `knitr::include_graphics()`, so you can exploit the chunk options:
 
-<div class="figure" style="text-align: center">
+``` r
+knitr::include_graphics('tux.png')
+```
 
-<img src="tux.png" alt="penguin" width="25%" />
-<p class="caption">
-penguin
+The above doesn’t work for Github. You have to edit the .md file
+directly and change the code to:
+
+``` r
+<p align="center">
+  <img width="25" height="25" src="tux.png">
 </p>
-
-</div>
+```
 
 ------------------------------------------------------------------------
 
