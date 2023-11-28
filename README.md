@@ -18,4 +18,4 @@ click
 
 <img src="README_files/comparison_table.png" width="1966" />
 
-<img src="README_files/figure-gfm/unnamed-chunk-3-1.png" width="100%" />
+<img src="README_files/comparison_chart.png" width="100%" />
