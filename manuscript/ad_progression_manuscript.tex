@@ -14,8 +14,27 @@
 \intervalconfig {soft open fences}
 \setlength{\parindent}{0pt}
 
+% Colorful hyperlinks within document
+\usepackage[colorlinks, citecolor={blue}]{hyperref}
+
+% Verbatim display of R or other code
+\usepackage{verbatim, listings}
+
+% More options with captions
+\usepackage[format=plain,
+labelfont={bf,it},
+textfont=it]{caption}
+
+% Figure placement obeys instructions
+\usepackage{float}
+
 \title{A multivariate longitudinal model with subject-varying effects for the physical and mental progression of Alzheimer's Disease}
 \author{Jesse W.~Birchfield, Robert E. Weiss, and Andrew J. Holbrook}
+	
+% \begin{figure}[H]
+% \centering
+% \includegraphics[width=.7\linewidth]{figures/hist\_y0}
+% \end{figure}
 	
 \begin{document}
 
@@ -40,42 +59,62 @@ We don't just specify a single model \textit{a priori}. After some experimentati
 
 {\color{teal} [Interpretation: what do we learn from the model?]}
 
+\pagebreak
 \section{Data}
 
 Our data comes from the Alzheimer's Disease Neuroimaging Initiative (Jack Jr et al., 2008; Petersen et al., 2010; Mueller et al., 2005), a public-private partnership sponsored in part by the National Institute on Aging (NIA). Beginning in October 2004, the three-year longitudinal ADNI-1 study followed a cohort of North American patients comprising 200 elderly controls, 400 with mild cognitive impairment (MCI), and 200 with diagnosed Alzheimer's Disease (AD). At each visit, researchers conducted cognitive assessments and structural MRI scans. Our analysis uses data from 663 of the 800 patients tabulated and made publicly available in Tustison et al. (2019), with a total of 2449 visits. We simply omit those visits that had missing MMSE scores.
 
-{\color{teal} [Description of FreeSurfer, FSLong, ANTs, SST. Why these two candidate pipelines?]}
+{\color{teal} [More description of data? Visualizations of data? Perhaps profile plots with FSLong, ANTsSST, MMSE for some randomly chosen subjects.]}
+
+We analyze output from two eCT pipelines. FreeSurfer and Advanced Normalization Tools (ANTs) use different geometrical constructs to stand in for cortical thickness. FreeSurfer is mesh based, using polygonal meshes representing the gray/white matter surfaces and outer cortical surfaces. We use the version of FreeSurfer optimized for longitudinal measurements of the same subject, hereafter FSLong. ANTs is volumetric, using diffeomorphic mappings. We use the version of ANTs optimized for repeated measurements of the same subject, called the ``single subject template", hereafter ANTsSST. 
 
 The MMSE is a screening test for cognitive impairment. It has 10 questions, takes 5 to 10 minutes to administer, and covers space and time orientation, naming familiar objects, repeating back a phrase, recalling a previous question, manipulating letters and/or numbers, and following instructions. Out of 30 possible points, a score of 24 or more indicates normal cognition, 19-23 indicates mild cognitive impairment, and 18 or below indicates moderate or severe impairment. While it can help differentiate different types of dementia, the test itself is not sufficient for diagnosis.
 
+\pagebreak
 \section{Methods}
 
 \subsection{Rationale for model design}
 
-[rejected: ZINB model, interaction effects, hierachical modeling of fixed effect coefs]
-[explicate first model, then explain how the others differ]
+{\color{teal}[
+Rationale for treating ECT and MMSE as a multivariate outcome, instead of using ECT as a covariate. (?)
 
+Advantages of multivariate normal: allows us to model error covariance in a matrix, which allows ``strong" information sharing. Allows us to find conditional distribution of one (or a subset) of outcomes given the other(s), which allows for comparing models with a different number of outcomes. It's possible to create a normal/ZINB model, which does fit the data more naturally, but it doesn't have the other features we want.
+
+Advantages of subject-varying effects structure, and of hierarchical modeling for these. No hierarchy for ``fixed" effects. What we can learn from intercept mean and sd, slope mean and sd, correlation of intercept and slope for same outcome, correlation of intercepts for different outcomes, correlations of slopes for different outcomes. All covariance matrices unstructured for max flexibility. 
+
+Modeling of three diagnostic groups completely separately: no overlap in parameters.
+
+No interaction terms.
+]}
+
+\pagebreak
 \subsection{MMSE transformation}
 
-The 2449 observations of MMSE look like this:
-{\color{teal}[histogram of MMSE, normal qqplot]}
-Clearly, they do not satisfy the normality assumption, and a multivariate normal model will give poor results.
+The 2449 observations of MMSE look like this. Clearly, they do not satisfy the normality assumption, and a multivariate normal model will give poor results.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{figures/mmse_before}
+\caption{Left: a relative frequency histogram of raw MMSE score for all subjects. It is discrete (integer-valued), bounded (0 to 30), and left-skewed, with a strong mode at the right endpoint. All of these features make it difficult to model with a Gaussian distribution. Right: a normal qq-plot for MMSE. It shows a very poor fit.}
+\end{figure}
 
 A Gaussian distribution describes a continuous quantity, not a discrete one. MMSE score is literally a count variable--the number of questions answered correctly on the questionnaire. But since the MMSE's objective is to somehow quantify cognitive capacity, which can reasonably be thought of as continuous, we can treat MMSE score as a ``coarse" or rounded measurement of a continuous latent variable. 
 
-Our first transformation is to consider ``MMSE loss"--questions missed--rather than MMSE, by subtracting the raw value from 30. So a score of 30 becomes 0, a score of 29 becomes 1, and so on. We also imagine a kind of threshold, where cognitive decline has to reach a certain point before the subject would miss another question, so the MMSE loss represents a rounding \textit{down} of the latent quantity. This justifies the step of adding $0.5$ to each value. So define $y = 30 - MMSE + 0.5$. It has the following distribution in our data: {\color{teal}[histogram of MMSE loss]}
+Our first transformation is to consider ``MMSE loss"--questions missed--rather than MMSE, by subtracting the raw value from 30. So a score of 30 becomes 0, a score of 29 becomes 1, and so on. We also imagine a kind of threshold, where cognitive decline has to reach a certain point before the subject would miss another question, so the MMSE loss represents a rounding \textit{down} of the latent quantity. This justifies the step of adding $0.5$ to each value. So define $y = 30 - MMSE + 0.5$. 
 
 Our next step is much easier with a single-parameter probability distribution, and this looks like a histogram of a sample from some Exponential distribution. We assume $F(y) = 1 - e^{-\lambda y}$. The maximum likelihood estimate of $\lambda$ is the maximum value of the polynomial $\Pi_{i=1}^{n}\left[ e^{-\lambda y_i} - e^{-\lambda (y_i + 1)} \right]$, which R easily computes as $\hat{\lambda} = 0.236$. 
 
 The probability integral transform states that if random variable $W$ has continuous monotonic CDF $F$, then random variable $F(W)$ has a $Unif(0,1)$ distribution. Conversely, if $U \sim Unif(0,1)$, and $G$ is the continuous monotonic CDF of random variable $X$, then random variable $G^{-1}(U)$ has the same distribution as $X$. Letting $F$ in the theorem be the exponential CDF with parameter $\hat{\lambda}$, and letting $G$ be the standard normal CDF $\Phi$, the transformation $\Phi^{-1}(F(Y))$ will have standard normal distribution, at least to the extent that $F$ describes the distribution of $Y$. 
-{\color{teal}[histogram of transformed MMSE loss, hist of sample from expo(.236), QQplot]} \\
-{\color{teal}[histogram of MMSE loss]}
 
-It's true that this technique will give $Y$ a \textit{marginally} normal distribution, whereas the assumption of the multivariate normal regression model is that $Y$ is \textit{conditionally} normal given the predictors. But this is does not make much of a difference in practice. If $Y|X \sim N(X\beta, \sigma_{Y}^{2})$, and $X \sim N(\mu_X, \sigma_{X}^{2})$, then $Y ~ N(\mu_X, \sigma_{X}^{2} + \sigma_{Y}^{2})$; it is still normal. If $X$ is binary or discrete, then $Y$ is a mixture of normals, empirically not much different from a true normal with the same mean and variance. 
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{figures/mmse_after}
+\caption{Left: Histogram of MMSE loss, defined as $30 - MMSE + .5$, overlaid with an Expo(.236) density, the best-fitting Exponential model by maximum likelihood. The histogram looks like a plausible sample from this density. Center: a histogram of MMSE transformed according to $h(y) = \Phi^{-1}(1 - e^{-.236(30-y+.5)})$, overlaid with a N(0,1) density. While not a perfect fit, it is a substantial improvement on the original. Right: a normal qq-plot of transformed MMSE loss. The main departure from normality occurs because of the high number of perfect MMSE scores.}
+\end{figure}
 
+It's true that this technique will give $Y$ a \textit{marginally} normal distribution, whereas the assumption of the multivariate normal regression model is that $Y$ is \textit{conditionally} normal given the predictors. But this is does not make much of a difference in practice. If $Y|X \sim N(X\beta, \sigma_{Y}^{2})$, and $X \sim N(\mu_X, \sigma_{X}^{2})$, then $Y \sim N(\mu_X, \sigma_{X}^{2} + \sigma_{Y}^{2})$; it is still normal. If $X$ is binary or discrete, then $Y$ is a mixture of normals; when the differences between the means of the mixture components are small compared to the overall variance, the mixture distribution is empirically not much different from a true normal distribution with the same mean and variance. 
 
-
-
+\pagebreak
 \subsection{Model specification}
 
 Here we describe the model in prose, and afterward we formally specify it in symbols. For each subject, and at each timepoint, we have a bivariate or trivariate outcome, consisting of (i) ERC, as estimated by FSLong, ANTsSST, the arithmetic mean of the two, or both, and (ii) MMSE loss, either untransformed or transformed. We model these as bivariate or trivariate normal, where the mean is a linear function of predictors described shortly, and the error covariance matrix is unstructured, to be estimated from the data. Predictors are age at baseline, centered by subtracting the mean age at baseline across all 663 subjects, a gender indicator, and time of visit in years since baseline. For each outcome, we have a separate set of coefficients. The coefficients for age and gender are ``fixed", in the sense that they do not vary by subject and do not have hyperparameters. The intercepts and slopes of the outcomes \textit{do} vary by subject, and we consider them as draws from an underlying multivariate normal distribution with a common mean and an unstructured covariance matrix. This hierarchical structure allows for information sharing across outcomes, across timepoints, and across subjects. We do not add any additional covariance across timepoints other than that induced by the slopes. Finally, for each diagnostic group--CN, MCI, AD--we fit a completely separate set of coefficients and hyperparameters, so that we effectively have three separate regressions. 
@@ -130,12 +169,18 @@ Our eight candidate models have the same structure, differing only in the  outco
 \end{tabular}
 \end{table}
 
+\pagebreak
 \subsection{Computation}
 
+We use the R programming language, supplemented by the package dplyr for all data management, and by the package pracma for advanced mathematical operations. To specify and fit the model, we use Stan, an open-source Bayesian software application, interfacing with R through the rstan package. We include our model scripts as an appendix, and the Stan file and all R scripts and regression results at \url{https://github.com/jwbirchfield/ad\_progression/}. Stan uses Hamiltonian Monte Carlo, a flavor of Markov Chain Monte Carlo to draw samples—each of which is a complete vector of parameters—from the joint posterior distribution. An advanced extension of HMC called the No U-Turn Sampler (NUTS) improves sampling efficiency. As the number of MCMC samples increases, the distribution of MCMC samples converges to the actual joint posterior distribution. Fortunately, the marginal distribution of each parameter in the MCMC samples converges to its actual marginal posterior distribution as well. To fit each of the eight models, we ran 4 chains in parallel with 6000 iterations each, which we thinned by a factor of 3 to get 8000 iterations. Effective sample sizes are all greater than 300, and R-hat statistics are no greater than 1.01. See Appendix A for the Stan code for the model. In the cross-validation stage, for each of the eight models and for each of the 5 folds, we ran 4 chains in parallel with 2000 iterations each, which we thinned by a factor of 2 to get 4000 iterations. We calculated ELPD and other fit statistics from the posterior samples, using custom R scripts.
+
+\pagebreak
 \subsection{Model comparison}
 
+\pagebreak
 \section{Discussion}
 
+\pagebreak
 \section{Appendix A: Stan code}
 
 \begin{verbatim}
