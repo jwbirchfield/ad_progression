@@ -1,8 +1,8 @@
-model 1: FSLong + MMSE
-model 2: ANTsSST + MMSE
-model 3: ECTavg + MMSE
-model 4: FSLong + ANTsSST + MMSE
-model 5: FSLong + MMSEt
-model 6: ANTsSST + MMSEt
-model 7: ECTavg + MMSEt
-model 8: FSLong + ANTsSST + MMSEt
+model 1: MMSE + FSLong + MMSE
+model 2: MMSE + ANTsSST + MMSE
+model 3: MMSE + ECTavg
+model 4: MMSE + FSLong + ANTsSST
+mmodel 5: tMMSE + FSLong + MMSE
+model 6: tMMSE + ANTsSST + MMSE
+model 7: tMMSE + ECTavg
+model 8: tMMSE + FSLong + ANTsSST

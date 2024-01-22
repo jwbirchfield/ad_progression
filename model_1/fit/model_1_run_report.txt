@@ -1,0 +1,69 @@
+Model name: model_1 
+
+Chains: 4 
+Warmup iterations per chain: 1000 
+Sampling iterations per chain: 6000 
+Thin: 3 
+Start time: 2024-01-19 10:08:45.738774 
+End time: 2024-01-19 12:40:33.377732 
+Run time: 152 minutes 
+Mean transitions per minute: 158.1 
+Min ESS:  248 
+Mean ESS: 7416.8 
+Min ESS per transition: 0.03 
+Mean ESS per transition: 0.93 
+Min ESS per minute: 1.63 
+Mean ESS per minute: 48.86 
+Divergent transitions:  0 / 8000 
+Max treedepth exceeded:  0 / 8000 
+
+Lowest ESS:
+# A tibble: 10 × 7
+   parameter             mean    sd    q05   q95  rhat   ess
+   <chr>                <dbl> <dbl>  <dbl> <dbl> <dbl> <dbl>
+ 1 L_Sigma_beta[1,3,2] -0.026 0.149 -0.288 0.207  1.02   248
+ 2 L_Rho_beta[1,3,2]   -0.048 0.276 -0.539 0.384  1.02   249
+ 3 Rho_beta[1,3,2]      0.006 0.221 -0.359 0.361  1.01   301
+ 4 Rho_beta[1,2,3]      0.006 0.221 -0.359 0.361  1.01   301
+ 5 L_Rho_beta[1,3,3]    0.931 0.089  0.756 0.996  1.01   355
+ 6 Sigma_beta[1,3,2]    0.001 0.019 -0.031 0.033  1.01   368
+ 7 Sigma_beta[1,2,3]    0.001 0.019 -0.031 0.033  1.01   368
+ 8 L_Rho_beta[2,3,2]   -0.148 0.106 -0.314 0.034  1.01   397
+ 9 L_Sigma_beta[2,3,2] -0.136 0.098 -0.292 0.031  1.01   401
+10 z[175,2]             0.395 1.10  -1.45  2.20   1.01   450
+
+Highest R-hat:
+# A tibble: 10 × 7
+   parameter             mean    sd    q05   q95  rhat   ess
+   <chr>                <dbl> <dbl>  <dbl> <dbl> <dbl> <dbl>
+ 1 L_Rho_beta[1,3,2]   -0.048 0.276 -0.539 0.384  1.02   249
+ 2 L_Sigma_beta[1,3,2] -0.026 0.149 -0.288 0.207  1.02   248
+ 3 Rho_beta[1,3,2]      0.006 0.221 -0.359 0.361  1.01   301
+ 4 Rho_beta[1,2,3]      0.006 0.221 -0.359 0.361  1.01   301
+ 5 Sigma_beta[1,3,2]    0.001 0.019 -0.031 0.033  1.01   368
+ 6 Sigma_beta[1,2,3]    0.001 0.019 -0.031 0.033  1.01   368
+ 7 L_Rho_beta[2,3,2]   -0.148 0.106 -0.314 0.034  1.01   397
+ 8 z[75,2]              0.848 1.08  -0.963 2.56   1.01   498
+ 9 z[175,2]             0.395 1.10  -1.45  2.20   1.01   450
+10 L_Sigma_beta[2,3,2] -0.136 0.098 -0.292 0.031  1.01   401
+
+---
+
+LOO: 
+
+Computed from 8000 by 2449 log-likelihood matrix
+
+         Estimate    SE
+elpd_loo  -4324.9  69.2
+p_loo      1444.5  34.9
+looic      8649.8 138.4
+------
+Monte Carlo SE of elpd_loo is NA.
+
+Pareto k diagnostic values:
+                         Count Pct.    Min. n_eff
+(-Inf, 0.5]   (good)     1453  59.3%   529       
+ (0.5, 0.7]   (ok)        675  27.6%   117       
+   (0.7, 1]   (bad)       287  11.7%   16        
+   (1, Inf)   (very bad)   34   1.4%   4         
+See help('pareto-k-diagnostic') for details.

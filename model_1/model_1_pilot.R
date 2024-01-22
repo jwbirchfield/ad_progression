@@ -1,28 +1,13 @@
 ### MODEL 1 PILOT SCRIPT
 
-source('../project_files/project_packages.R')
+source('../project_files/project_functions.R')
 
-get_model_fit(
-  y1 = FSLong,
-  y2 = MMSE_loss,
-  model_name = 'model_1')
-
-get_model_summary(
-  model_name = 'model_1')
-
-get_results_table(
-  model_name = 'model_1')
-
-get_run_report(
-  model_name = 'model_1')
-
-get_folds(
-  y1 = FSLong,
-  y2 = MMSE_loss,
-  model_name = 'model_1')
-
-get_mmse_lepd_2(
-  y1 = FSLong, 
-  y2 = MMSE_loss,
-  model_name = 'model_1',
-  transformed_MMSE = FALSE) # -5586.287
+get_model_fit(model_1); beepr::beep(8) # done
+get_model_summary(model_1); beepr::beep(8) # done
+get_model_results_table(model_1); beepr::beep(8) # done
+get_model_run_report(model_1); beepr::beep(8) # done
+get_cv_fit(model_1, seed = 20240121); beepr::beep(8) # done
+get_cv_elpd(model_1); beepr::beep(8) # done
+get_lov_fit(model_1, seed = 20240121); beepr::beep(8) # done
+get_lov_elpd(model_1); beepr::beep(8) # done
+# get_marginal_cv_elpd(model_1); beepr::beep(8) # not ready

@@ -1,21 +1,15 @@
-A multivariate longitudinal model for the physical and mental
-progression of Alzheimer’s Disease
-================
-Jesse Birchfield, Robert Weiss, Andrew Holbrook
+Example equation:
+```math
+f(x) = \frac{1}{\sqrt{2\pi}}  e^{ -\frac{1}{2} (\frac{x-\mu}{\sigma})}$$
+```
 
-------------------------------------------------------------------------
+Example equation 2:
+$$
+\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)
+```
+$$
 
-This is the Github repo for the second chapter of my dissertation. The
-figures below contain definitions and some fit statistics for models
-1-8. For Stan code for the models, see
-`project_files/general_model.stan`. For regression results, see for
-example `model_1/fit/model_1_results_table.csv`. For the current state
-of the manuscript, see `manuscript/ad_progression_manuscript.pdf` or
-click
-[here](https://github.com/jwbirchfield/ad_progression/blob/main/manuscript/ad_progression_manuscript.pdf).
-
-------------------------------------------------------------------------
-
-<img src="README_files/comparison_table.png" width="100%" />
-
-<img src="README_files/comparison_chart.png" width="100%" />
+Example code:
+``` r
+1+1
+```

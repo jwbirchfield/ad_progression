@@ -1,11 +1,6 @@
 ## PROJECT PACKAGES
 
-library(tidyverse)
-library(glue)
-library(cmdstanr)
-library(rstan)
-library(shinystan)
-library(posterior)
-library(bayesplot)
-library(pracma)
-library(loo)
+library(pacman)
+p_load(rlang, glue, magrittr, tidyverse, 
+  pracma, rstan, cmdstanr, loo, posterior, 
+  bayesplot, shinystan)

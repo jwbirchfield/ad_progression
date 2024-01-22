@@ -1,0 +1,170 @@
+\begin{thebibliography}{26}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\selectlanguage}[1]{\relax}
+\providecommand{\bibAnnoteFile}[1]{%
+  \IfFileExists{#1}{\begin{quotation}\noindent\textsc{Key:} #1\\
+  \textsc{Annotation:}\ \input{#1}\end{quotation}}{}}
+\providecommand{\bibAnnote}[2]{%
+  \begin{quotation}\noindent\textsc{Key:} #1\\
+  \textsc{Annotation:}\ #2\end{quotation}}
+
+\bibitem[{Avants et~al.(2009)Avants, Tustison, Song
+  et~al.}]{avants2009advanced}
+Avants, B.~B., N.~Tustison, G.~Song, et~al. 2009. Advanced normalization tools
+  (ants). Insight j 2:1--35.
+\bibAnnoteFile{avants2009advanced}
+
+\bibitem[{Birchfield et~al.(2022)Birchfield, Tustison, and
+  Holbrook}]{birchfield2022synthesizing}
+Birchfield, J.~W., N.~J. Tustison, and A.~J. Holbrook. 2022. Synthesizing
+  longitudinal cortical thickness estimates with a flexible and hierarchical
+  multivariate measurement-error model. arXiv preprint arXiv:2204.03576 .
+\bibAnnoteFile{birchfield2022synthesizing}
+
+\bibitem[{Borchers(2021)}]{pracma}
+Borchers, H.~W. 2021. pracma: practical numerical math functions. R package
+  version 2.3.3.
+\bibAnnoteFile{pracma}
+
+\bibitem[{Carpenter et~al.(2017)Carpenter, Gelman, Hoffman, Lee, Goodrich,
+  Betancourt, Brubaker, Guo, Li, and Riddell}]{carpenter2017stan}
+Carpenter, B., A.~Gelman, M.~D. Hoffman, D.~Lee, B.~Goodrich, M.~Betancourt,
+  M.~Brubaker, J.~Guo, P.~Li, and A.~Riddell. 2017. Stan: A probabilistic
+  programming language. Journal of statistical software 76.
+\bibAnnoteFile{carpenter2017stan}
+
+\bibitem[{Fischl(2012)}]{fischl2012freesurfer}
+Fischl, B. 2012. Freesurfer. Neuroimage 62:774--781.
+\bibAnnoteFile{fischl2012freesurfer}
+
+\bibitem[{Gelman et~al.(1995)Gelman, Carlin, Stern, and
+  Rubin}]{gelman1995bayesian}
+Gelman, A., J.~B. Carlin, H.~S. Stern, and D.~B. Rubin. 1995. Bayesian data
+  analysis. Chapman and Hall/CRC.
+\bibAnnoteFile{gelman1995bayesian}
+
+\bibitem[{Hoffman et~al.(2014)Hoffman, Gelman et~al.}]{hoffman2014no}
+Hoffman, M.~D., A.~Gelman, et~al. 2014. The no-u-turn sampler: adaptively
+  setting path lengths in hamiltonian monte carlo. J. Mach. Learn. Res.
+  15:1593--1623.
+\bibAnnoteFile{hoffman2014no}
+
+\bibitem[{Holbrook et~al.(2020)Holbrook, Tustison, Marquez, Roberts, Yassa,
+  Gillen, and {\S}}]{holbrook2020anterolateral}
+Holbrook, A.~J., N.~J. Tustison, F.~Marquez, J.~Roberts, M.~A. Yassa, D.~L.
+  Gillen, and A.~D. N.~I. {\S}. 2020. Anterolateral entorhinal cortex thickness
+  as a new biomarker for early detection of alzheimer's disease. Alzheimer's \&
+  Dementia: Diagnosis, Assessment \& Disease Monitoring 12:e12068.
+\bibAnnoteFile{holbrook2020anterolateral}
+
+\bibitem[{Jack et~al.(2010)Jack, Knopman, Jagust, Shaw, Aisen, Weiner,
+  Petersen, and Trojanowski}]{jack2010hypothetical}
+Jack, C.~R., D.~S. Knopman, W.~J. Jagust, L.~M. Shaw, P.~S. Aisen, M.~W.
+  Weiner, R.~C. Petersen, and J.~Q. Trojanowski. 2010. Hypothetical model of
+  dynamic biomarkers of the alzheimer's pathological cascade. The Lancet
+  Neurology 9:119--128.
+\bibAnnoteFile{jack2010hypothetical}
+
+\bibitem[{Jack~Jr et~al.(2008)Jack~Jr, Bernstein, Fox, Thompson, Alexander,
+  Harvey, Borowski, Britson, L.~Whitwell, Ward et~al.}]{jack2008alzheimer}
+Jack~Jr, C.~R., M.~A. Bernstein, N.~C. Fox, P.~Thompson, G.~Alexander,
+  D.~Harvey, B.~Borowski, P.~J. Britson, J.~L.~Whitwell, C.~Ward, et~al. 2008.
+  The alzheimer's disease neuroimaging initiative (adni): Mri methods. Journal
+  of Magnetic Resonance Imaging: An Official Journal of the International
+  Society for Magnetic Resonance in Medicine 27:685--691.
+\bibAnnoteFile{jack2008alzheimer}
+
+\bibitem[{Mueller et~al.(2005)Mueller, Weiner, Thal, Petersen, Jack, Jagust,
+  Trojanowski, Toga, and Beckett}]{mueller2005ways}
+Mueller, S.~G., M.~W. Weiner, L.~J. Thal, R.~C. Petersen, C.~R. Jack,
+  W.~Jagust, J.~Q. Trojanowski, A.~W. Toga, and L.~Beckett. 2005. Ways toward
+  an early diagnosis in alzheimer’s disease: the alzheimer’s disease
+  neuroimaging initiative (adni). Alzheimer's \& Dementia 1:55--66.
+\bibAnnoteFile{mueller2005ways}
+
+\bibitem[{Muth et~al.(2018)Muth, Oravecz, and Gabry}]{muth2018user}
+Muth, C., Z.~Oravecz, and J.~Gabry. 2018. User-friendly bayesian regression
+  modeling: A tutorial with rstanarm and shinystan. The Quantitative Methods
+  for Psychology 14:99--119.
+\bibAnnoteFile{muth2018user}
+
+\bibitem[{Neal et~al.(2011)}]{neal2011mcmc}
+Neal, R.~M. et~al. 2011. Mcmc using hamiltonian dynamics. Handbook of markov
+  chain monte carlo 2:2.
+\bibAnnoteFile{neal2011mcmc}
+
+\bibitem[{Pedersen(2019)}]{patchwork}
+Pedersen, T.~L. 2019. Package ‘patchwork’. R package http://CRAN.
+  R-project. org/package= patchwork. Cran .
+\bibAnnoteFile{patchwork}
+
+\bibitem[{Petersen et~al.(2010)Petersen, Aisen, Beckett, Donohue, Gamst,
+  Harvey, Jack, Jagust, Shaw, Toga et~al.}]{petersen2010alzheimer}
+Petersen, R.~C., P.~Aisen, L.~A. Beckett, M.~Donohue, A.~Gamst, D.~J. Harvey,
+  C.~Jack, W.~Jagust, L.~Shaw, A.~Toga, et~al. 2010. Alzheimer's disease
+  neuroimaging initiative (adni): clinical characterization. Neurology
+  74:201--209.
+\bibAnnoteFile{petersen2010alzheimer}
+
+\bibitem[{Rodgers(2002)}]{rodgers2002alzheimer}
+Rodgers, A.~B. 2002. Alzheimer's disease: unraveling the mystery vol.~1.
+  National Institutes of Health.
+\bibAnnoteFile{rodgers2002alzheimer}
+
+\bibitem[{Seber and Lee(2012)}]{seber2012linear}
+Seber, G.~A. and A.~J. Lee. 2012. Linear regression analysis. John Wiley \&
+  Sons.
+\bibAnnoteFile{seber2012linear}
+
+\bibitem[{{Stan Development Team}(2020)}]{rstan}
+{Stan Development Team}. 2020. {RStan}: the {R} interface to {Stan}. R package
+  version 2.21.2.
+\bibAnnoteFile{rstan}
+
+\bibitem[{Tombaugh and McIntyre(1992)}]{tombaugh1992mini}
+Tombaugh, T.~N. and N.~J. McIntyre. 1992. The mini-mental state examination: a
+  comprehensive review. Journal of the American Geriatrics Society 40:922--935.
+\bibAnnoteFile{tombaugh1992mini}
+
+\bibitem[{Tustison et~al.(2021)Tustison, Cook, Holbrook, Johnson, Muschelli,
+  Devenyi, Duda, Das, Cullen, Gillen et~al.}]{tustison2021antsx}
+Tustison, N.~J., P.~A. Cook, A.~J. Holbrook, H.~J. Johnson, J.~Muschelli, G.~A.
+  Devenyi, J.~T. Duda, S.~R. Das, N.~C. Cullen, D.~L. Gillen, et~al. 2021. The
+  antsx ecosystem for quantitative biological and medical imaging. Scientific
+  reports 11:1--13.
+\bibAnnoteFile{tustison2021antsx}
+
+\bibitem[{Vehtari et~al.(2017)Vehtari, Gelman, and
+  Gabry}]{vehtari2017practical}
+Vehtari, A., A.~Gelman, and J.~Gabry. 2017. Practical bayesian model evaluation
+  using leave-one-out cross-validation and waic. Statistics and computing
+  27:1413--1432.
+\bibAnnoteFile{vehtari2017practical}
+
+\bibitem[{Vehtari et~al.(2021)Vehtari, Gelman, Gabry, and Yao}]{loo}
+Vehtari, A., A.~Gelman, J.~Gabry, and Y.~Yao. 2021. Package ‘loo’.
+  Efficient Leave-One-Out Cross-Validation and WAIC for Bayesian Models .
+\bibAnnoteFile{loo}
+
+\bibitem[{Weiss(2005)}]{weiss2005modeling}
+Weiss, R.~E. 2005. Modeling longitudinal data vol.~1. Springer.
+\bibAnnoteFile{weiss2005modeling}
+
+\bibitem[{Wickham(2011)}]{ggplot2}
+Wickham, H. 2011. ggplot2. Wiley interdisciplinary reviews: computational
+  statistics 3:180--185.
+\bibAnnoteFile{ggplot2}
+
+\bibitem[{Wickham et~al.(2019)Wickham, Fran{\c{c}}ois, Henry, M{\"u}ller, and
+  Wickham}]{dplyr}
+Wickham, H., R.~Fran{\c{c}}ois, L.~Henry, K.~M{\"u}ller, and M.~H. Wickham.
+  2019. Package ‘dplyr’. A Grammar of Data Manipulation. R package version
+  8.
+\bibAnnoteFile{dplyr}
+
+\bibitem[{Wickham and Wickham(2019)}]{stringr}
+Wickham, H. and M.~H. Wickham. 2019. Package ‘stringr’. Website:
+  http://stringr. tidyverse. org, https://github. com/tidyverse/stringr .
+\bibAnnoteFile{stringr}
+
+\end{thebibliography}

@@ -1,12 +1,14 @@
-### get_run_report(model_name)
-#' requires: project_packages.R, model_fit(object), model_summary(object), fit(directory)
+### get_model_run_report
+# requires: project_packages.R, model_fit(object), model_summary(object), fit(directory)
+# usage: get_run_report(model_1)
+# function writes a file, so no need to assign it
 
-get_run_report <- function(model_name){
+get_model_run_report <- function(model_name){
   
+  model_name <- enexpr(model_name) %>% as_string()
   model_fit <- readRDS(glue('fit/{model_name}_fit.RDS'))
   model_summary <- read_csv(glue('fit/{model_name}_summary.csv'))
   
-  model_name <- attributes(model_fit)$model_name
   n_chains <- attributes(model_fit)$n_chains
   warmup <- attributes(model_fit)$warmup
   sampling <- attributes(model_fit)$sampling
@@ -14,16 +16,22 @@ get_run_report <- function(model_name){
   start_time <- attributes(model_fit)$start_time
   end_time <- attributes(model_fit)$end_time
   run_time <- difftime(end_time, start_time, units='mins')
-  check_ess <- model_summary %>% filter(parameter != 'lp__') %>% arrange(ess) %>% slice(1:10)
-  check_rhat <- model_summary %>% filter(parameter != 'lp__') %>% arrange(desc(rhat)) %>% slice(1:10)
-  sampler_params <- get_sampler_params(model_fit, inc_warmup=FALSE)
-  divergent <- do.call(rbind, sampler_params)[,'divergent__']
-  treedepths <- do.call(rbind, sampler_params)[,'treedepth__']
+  check_ess <- model_summary %>% 
+    filter(parameter != 'lp__') %>% 
+    arrange(ess) %>% 
+    slice(1:10)
+  check_rhat <- model_summary %>% 
+    filter(parameter != 'lp__') %>% 
+    arrange(desc(rhat)) %>% 
+    slice(1:10)
+  sampler_params <- get_sampler_params(model_fit, inc_warmup = FALSE)
+  divergent <- do.call(rbind, sampler_params)[, 'divergent__']
+  treedepths <- do.call(rbind, sampler_params)[, 'treedepth__']
   too_deep <- length(treedepths[sapply(treedepths, function(x) x == 10)])
-  log_lik_1 <- extract_log_lik(model_fit, merge_chains=FALSE)
-  r_eff <- relative_eff(exp(log_lik_1), cores=8)
-  loo_1 <- loo(log_lik_1, r_eff=r_eff, cores=8, save_psis=TRUE)
-  sink(file=glue('fit/{model_name}_run_info.txt'))
+  log_lik_1 <- extract_log_lik(model_fit, merge_chains = FALSE)
+  r_eff <- relative_eff(exp(log_lik_1), cores = 8)
+  loo_1 <- loo(log_lik_1, r_eff=r_eff, cores = 8, save_psis = TRUE)
+  sink(file = glue('fit/{model_name}_run_report.txt'))
   cat('Model name:', model_name, 
       '\n\nChains:', n_chains, 
       '\nWarmup iterations per chain:', warmup, 

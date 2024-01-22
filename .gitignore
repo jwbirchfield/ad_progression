@@ -14,5 +14,4 @@ model_*/fit/model_*-*-*.csv
 *.aux
 *.gz
 *.docx
-README.Rmd
-*.html
+literature_review/
